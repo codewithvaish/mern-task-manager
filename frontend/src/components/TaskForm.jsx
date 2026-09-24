@@ -1,4 +1,12 @@
 import { useEffect, useState } from "react";
+import {
+  ClipboardList,
+  FileText,
+  FolderOpen,
+  Flag,
+  CircleCheckBig,
+  CalendarDays,
+} from "lucide-react";
 import api from "../services/api";
 
 const TaskForm = ({
@@ -60,84 +68,173 @@ const TaskForm = ({
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-4 mt-5"
+      className="mt-6 space-y-5"
     >
-      <input
-        type="text"
-        name="title"
-        placeholder="Task Title"
-        value={formData.title}
-        onChange={handleChange}
-        className="w-full border rounded-lg p-3"
-        required
-      />
+      {/* Title */}
+      <div>
+        <label className="mb-2 block text-sm font-medium text-slate-700">
+          Task Title
+        </label>
 
-      <textarea
-        name="description"
-        placeholder="Description"
-        value={formData.description}
-        onChange={handleChange}
-        className="w-full border rounded-lg p-3"
-      />
+        <div className="relative">
+          <ClipboardList
+            size={18}
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+          />
 
-      <select
-        name="category"
-        value={formData.category}
-        onChange={handleChange}
-        className="w-full border rounded-lg p-3"
-      >
-        <option>Study</option>
-        <option>Work</option>
-        <option>Career</option>
-        <option>Health</option>
-        <option>Shopping</option>
-        <option>Personal</option>
-        <option>Finance</option>
-        <option>Other</option>
-      </select>
+          <input
+            type="text"
+            name="title"
+            placeholder="Enter task title"
+            value={formData.title}
+            onChange={handleChange}
+            className="w-full rounded-xl border border-slate-300 py-3 pl-11 pr-4 transition focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
+            required
+          />
+        </div>
+      </div>
 
-      <select
-        name="priority"
-        value={formData.priority}
-        onChange={handleChange}
-        className="w-full border rounded-lg p-3"
-      >
-        <option>High</option>
-        <option>Medium</option>
-        <option>Low</option>
-      </select>
+      {/* Description */}
+      <div>
+        <label className="mb-2 block text-sm font-medium text-slate-700">
+          Description
+        </label>
 
-      <select
-        name="status"
-        value={formData.status}
-        onChange={handleChange}
-        className="w-full border rounded-lg p-3"
-      >
-        <option>Pending</option>
-        <option>In Progress</option>
-        <option>Completed</option>
-      </select>
+        <div className="relative">
+          <FileText
+            size={18}
+            className="absolute left-4 top-4 text-slate-400"
+          />
 
-      <input
-        type="date"
-        name="dueDate"
-        value={formData.dueDate}
-        onChange={handleChange}
-        className="w-full border rounded-lg p-3"
-      />
+          <textarea
+            rows={4}
+            name="description"
+            placeholder="Write a short description..."
+            value={formData.description}
+            onChange={handleChange}
+            className="w-full resize-none rounded-xl border border-slate-300 py-3 pl-11 pr-4 transition focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
+          />
+        </div>
+      </div>
 
-      <div className="flex justify-end gap-3">
+      {/* Select Fields */}
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+        {/* Category */}
+        <div>
+          <label className="mb-2 block text-sm font-medium text-slate-700">
+            Category
+          </label>
+
+          <div className="relative">
+            <FolderOpen
+              size={18}
+              className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+            />
+
+            <select
+              name="category"
+              value={formData.category}
+              onChange={handleChange}
+              className="w-full rounded-xl border border-slate-300 py-3 pl-11 pr-4 transition focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
+            >
+              <option>Study</option>
+              <option>Work</option>
+              <option>Career</option>
+              <option>Health</option>
+              <option>Shopping</option>
+              <option>Personal</option>
+              <option>Finance</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Priority */}
+        <div>
+          <label className="mb-2 block text-sm font-medium text-slate-700">
+            Priority
+          </label>
+
+          <div className="relative">
+            <Flag
+              size={18}
+              className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+            />
+
+            <select
+              name="priority"
+              value={formData.priority}
+              onChange={handleChange}
+              className="w-full rounded-xl border border-slate-300 py-3 pl-11 pr-4 transition focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
+            >
+              <option>High</option>
+              <option>Medium</option>
+              <option>Low</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Status */}
+        <div>
+          <label className="mb-2 block text-sm font-medium text-slate-700">
+            Status
+          </label>
+
+          <div className="relative">
+            <CircleCheckBig
+              size={18}
+              className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+            />
+
+            <select
+              name="status"
+              value={formData.status}
+              onChange={handleChange}
+              className="w-full rounded-xl border border-slate-300 py-3 pl-11 pr-4 transition focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
+            >
+              <option>Pending</option>
+              <option>In Progress</option>
+              <option>Completed</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Due Date */}
+        <div>
+          <label className="mb-2 block text-sm font-medium text-slate-700">
+            Due Date
+          </label>
+
+          <div className="relative">
+            <CalendarDays
+              size={18}
+              className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+            />
+
+            <input
+              type="date"
+              name="dueDate"
+              value={formData.dueDate}
+              onChange={handleChange}
+              className="w-full rounded-xl border border-slate-300 py-3 pl-11 pr-4 transition focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Buttons */}
+      <div className="flex flex-col-reverse gap-3 pt-2 sm:flex-row sm:justify-end">
         <button
           type="button"
           onClick={closeModal}
-          className="px-5 py-2 rounded-lg bg-gray-300 hover:bg-gray-400"
+          className="rounded-xl border border-slate-300 bg-white px-6 py-3 font-medium text-slate-700 transition hover:bg-slate-100"
         >
           Cancel
         </button>
 
         <button
           type="submit"
-          className="px-5 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700"
+          className="rounded-xl bg-blue-600 px-6 py-3 font-medium text-white transition hover:bg-blue-700"
         >
           {isEditing ? "Update Task" : "Create Task"}
         </button>

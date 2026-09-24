@@ -1,4 +1,4 @@
-import { FaClipboardList } from "react-icons/fa";
+import { ClipboardList } from "lucide-react";
 import TaskCard from "./TaskCard";
 
 const TaskList = ({
@@ -8,42 +8,40 @@ const TaskList = ({
   onComplete,
   onEdit,
 }) => {
-
   if (loading) {
     return (
-      <div className="bg-white border border-gray-200 rounded-2xl shadow-sm py-20 flex justify-center">
-
-        <div className="w-12 h-12 border-4 border-indigo-200 border-t-indigo-600 rounded-full animate-spin"></div>
-
+      <div className="flex min-h-[320px] items-center justify-center rounded-2xl border border-slate-200 bg-white shadow-sm">
+        <div className="relative">
+          <div className="h-12 w-12 animate-spin rounded-full border-4 border-blue-100 border-t-blue-600"></div>
+        </div>
       </div>
     );
   }
 
   if (tasks.length === 0) {
     return (
-      <div className="bg-white border border-gray-200 rounded-2xl shadow-sm py-16 px-8 flex flex-col items-center">
-
-        <div className="w-16 h-16 rounded-full bg-indigo-100 flex items-center justify-center mb-5">
-          <FaClipboardList
-            size={28}
-            className="text-indigo-600"
+      <div className="flex min-h-[360px] flex-col items-center justify-center rounded-2xl border border-slate-200 bg-white px-6 py-12 text-center shadow-sm sm:px-10">
+        <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-blue-100">
+          <ClipboardList
+            size={36}
+            className="text-blue-600"
           />
         </div>
 
-        <h2 className="text-2xl font-semibold text-gray-800">
+        <h2 className="text-xl font-semibold text-slate-800 sm:text-2xl">
           No Tasks Found
         </h2>
 
-        <p className="text-gray-500 mt-2 text-center max-w-md">
-          Try changing your filters or create your first task.
+        <p className="mt-3 max-w-md text-sm leading-6 text-slate-500 sm:text-base">
+          Try changing your filters or create your first task
+          to start managing your work efficiently.
         </p>
-
       </div>
     );
   }
 
   return (
-    <div className="grid gap-5">
+    <div className="space-y-4 sm:space-y-5">
       {tasks.map((task) => (
         <TaskCard
           key={task._id}

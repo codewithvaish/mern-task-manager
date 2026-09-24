@@ -1,11 +1,12 @@
 import {
-  FaEdit,
-  FaTrash,
-  FaCheckCircle,
-  FaCalendarAlt,
-  FaTag,
-  FaFlag,
-} from "react-icons/fa";
+  Pencil,
+  Trash2,
+  CheckCircle2,
+  CalendarDays,
+  Tag,
+  Flag,
+  Clock3,
+} from "lucide-react";
 
 const TaskCard = ({
   task,
@@ -29,7 +30,7 @@ const TaskCard = ({
   };
 
   const statusStyle = {
-    Pending: "bg-gray-100 text-gray-700",
+    Pending: "bg-slate-100 text-slate-700",
     "In Progress": "bg-blue-100 text-blue-700",
     Completed: "bg-green-100 text-green-700",
   };
@@ -47,102 +48,112 @@ const TaskCard = ({
 
   return (
     <div
-      className={`bg-white rounded-2xl border border-gray-200 border-l-4 ${
+      className={`group rounded-2xl border border-slate-200 border-l-4 ${
         priorityStyle[task.priority].border
-      } shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6`}
+      } bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg`}
     >
       {/* Header */}
-
-      <div className="flex justify-between items-start gap-5">
-
+      <div className="flex items-start justify-between gap-4">
         <div className="flex-1">
-
-          <h2 className="text-xl font-bold text-gray-800">
+          <h2 className="text-lg font-semibold text-slate-800">
             {task.title}
           </h2>
 
-          <p className="mt-2 text-gray-500 leading-6">
+          <p className="mt-2 text-sm leading-6 text-slate-500">
             {task.description || "No description provided."}
           </p>
-
         </div>
 
         <div
-          className={`flex items-center gap-2 px-3 py-1 rounded-full text-sm font-semibold ${
+          className={`flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold ${
             priorityStyle[task.priority].badge
           }`}
         >
-          <FaFlag size={12} />
+          <Flag size={13} />
           {task.priority}
         </div>
-
       </div>
 
       {/* Meta */}
-
-      <div className="flex flex-wrap items-center gap-3 mt-6">
-
-        <div className="flex items-center gap-2 bg-indigo-50 text-indigo-700 px-3 py-2 rounded-full text-sm">
-          <FaTag size={12} />
+      <div className="mt-4 flex flex-wrap items-center gap-2">
+        <div className="flex items-center gap-1.5 rounded-full bg-indigo-50 px-3 py-1.5 text-xs font-medium text-indigo-700">
+          <Tag size={14} />
           {task.category}
         </div>
 
         <div
-          className={`px-3 py-2 rounded-full text-sm font-medium ${
+          className={`rounded-full px-3 py-1.5 text-xs font-medium ${
             statusStyle[task.status]
           }`}
         >
           {task.status}
         </div>
-
-        <div
-          className={`ml-auto flex items-center gap-2 text-sm ${
-            isOverdue
-              ? "text-red-600 font-semibold"
-              : "text-gray-500"
-          }`}
-        >
-          <FaCalendarAlt />
-
-          {task.dueDate
-            ? new Date(task.dueDate).toLocaleDateString()
-            : "No Due Date"}
-        </div>
-
       </div>
 
-      <div className="border-t border-gray-100 my-5"></div>
+      {/* Due Date */}
+      <div
+        className={`mt-4 flex items-center justify-between rounded-xl border px-3 py-2.5 ${
+          isOverdue
+            ? "border-red-200 bg-red-50"
+            : "border-slate-200 bg-slate-50"
+        }`}
+      >
+        <div className="flex items-center gap-2">
+          <CalendarDays
+            size={16}
+            className={
+              isOverdue ? "text-red-600" : "text-slate-500"
+            }
+          />
+
+          <span
+            className={`text-sm ${
+              isOverdue
+                ? "font-semibold text-red-600"
+                : "text-slate-600"
+            }`}
+          >
+            {task.dueDate
+              ? new Date(task.dueDate).toLocaleDateString()
+              : "No Due Date"}
+          </span>
+        </div>
+
+        {isOverdue && (
+          <div className="flex items-center gap-1 text-xs font-semibold text-red-600">
+            <Clock3 size={13} />
+            Overdue
+          </div>
+        )}
+      </div>
 
       {/* Footer */}
-
-      <div className="flex justify-end gap-3">
-
+      <div className="mt-4 flex justify-end gap-2 border-t border-slate-100 pt-4">
         {task.status !== "Completed" && (
           <button
             onClick={() => onComplete(task._id)}
-            className="w-10 h-10 rounded-xl bg-green-50 hover:bg-green-100 text-green-600 flex items-center justify-center transition"
             title="Complete"
+            className="rounded-lg bg-green-50 p-2 text-green-600 transition-all duration-200 hover:bg-green-100 hover:scale-105"
           >
-            <FaCheckCircle />
+            <CheckCircle2 size={17} />
           </button>
         )}
 
         <button
           onClick={() => onEdit(task)}
-          className="w-10 h-10 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-600 flex items-center justify-center transition"
           title="Edit"
+          className="rounded-lg bg-blue-50 p-2 text-blue-600 transition-all duration-200 hover:bg-blue-100 hover:scale-105"
         >
-          <FaEdit />
+          <Pencil size={17} />
         </button>
 
         <button
           onClick={() => onDelete(task._id)}
-          className="w-10 h-10 rounded-xl bg-red-50 hover:bg-red-100 text-red-600 flex items-center justify-center transition"
           title="Delete"
+          className="rounded-lg bg-red-50 p-2 text-red-600 transition-all duration-200 hover:bg-red-100 hover:scale-105"
         >
-          <FaTrash />
+          <Trash2 size={17} />
         </button>
-
       </div>
     </div>
   );

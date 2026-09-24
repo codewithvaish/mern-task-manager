@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import {
-  FaTasks,
-  FaCheckCircle,
-  FaPlus,
-} from "react-icons/fa";
+  LayoutDashboard,
+  CircleCheckBig,
+  Plus,
+} from "lucide-react";
 import Navbar from "../components/Navbar";
 import StatsCard from "../components/StatsCard";
 import SearchBar from "../components/SearchBar";
@@ -132,6 +132,21 @@ const Dashboard = () => {
     setShowModal(true);
   };
 
+  const hour = new Date().getHours();
+
+  const greeting =
+    hour < 12
+      ? "Good Morning"
+      : hour < 17
+        ? "Good Afternoon"
+        : "Good Evening";
+
+  const today = new Date().toLocaleDateString("en-US", {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+  });
+
   return (
     <div className="min-h-screen bg-gray-100">
       <Navbar />
@@ -152,19 +167,22 @@ const Dashboard = () => {
               <div className="flex items-center gap-4">
 
                 <div className="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur flex items-center justify-center">
-                  <FaTasks size={24} className="text-white" />
+                  <LayoutDashboard size={24} className="text-white" />
                 </div>
 
                 <div>
 
                   <h1 className="text-4xl font-bold text-white">
-                    Dashboard
+                    {greeting}
                   </h1>
 
-                  <p className="text-indigo-100 mt-1">
-                    Organize, prioritize and finish your work efficiently.
+                  <p className="mt-2 text-indigo-100">
+                    {today}
                   </p>
 
+                  <p className="mt-4 text-blue-100">
+                    Organize, prioritize and finish your work efficiently.
+                  </p>
                 </div>
 
               </div>
@@ -188,8 +206,7 @@ const Dashboard = () => {
               <div className="bg-white/15 backdrop-blur rounded-2xl p-5 min-w-37.5">
 
                 <div className="flex items-center gap-2 text-indigo-100">
-                  <FaCheckCircle />
-                  <span className="text-sm">
+                  <CircleCheckBig size={18} />                  <span className="text-sm">
                     Completed
                   </span>
                 </div>
@@ -220,6 +237,7 @@ const Dashboard = () => {
             title="Completed"
             value={stats.completed}
             color="text-green-600"
+            featured
           />
 
           <StatsCard
@@ -289,8 +307,7 @@ const Dashboard = () => {
               }}
               className="flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-8 py-3 rounded-xl shadow-sm transition duration-200 xl:self-end"
             >
-              <FaPlus size={15} />
-              Add Task
+              <Plus size={18} />              Add Task
             </button>
 
           </div>
