@@ -1,47 +1,59 @@
 # MERN Task Manager
 
-A full-stack task management application built with the MERN stack, featuring secure authentication, task CRUD operations, filtering, sorting, search, priorities, due dates, and dashboard statistics.
+A full-stack task management application built with the MERN stack, featuring JWT-based authentication, task CRUD operations, search, filtering, sorting, priorities, due dates, progress tracking, and dashboard statistics.
 
 ## Live Demo
 
-[View Live Project]https://task-manager-frontend-uep9.onrender.com/
+[View Live Project](https://task-manager-frontend-uep9.onrender.com/)
 
 ## Features
 
-* User registration and login
-* JWT-based authentication
-* Create, update, and delete tasks
-* Mark tasks as completed
-* Search tasks
-* Filter by category, priority, and status
-* Sort tasks
-* Task due dates
-* Dashboard with task statistics
-* Progress tracking
-* Responsive user interface
-* Toast notifications and alerts
-* Protected routes
+- User registration and login
+- JWT-based authentication
+- Create, update, and delete tasks
+- Mark tasks as completed
+- Search tasks
+- Filter by category, priority, and status
+- Sort tasks
+- Task due dates
+- Dashboard with task statistics
+- Progress tracking
+- Responsive user interface
+- Toast notifications and alerts
+- Protected routes
+
+## Screenshots
+
+### Dashboard
+![Dashboard](dashboard.png)
+
+### Tasks
+![Tasks](tasks.png)
+
+### Task Filters
+![Task Filters](filters.png)
+
+### Edit Task
+![Edit Task](edit-task.png)
 
 ## Tech Stack
 
 ### Frontend
-
-* React.js
-* Vite
-* Tailwind CSS
-* React Router
-* Axios
-* Lucide React
-* SweetAlert
+- React.js
+- Vite
+- Tailwind CSS
+- React Router
+- Axios
+- Lucide React
+- SweetAlert
 
 ### Backend
-
-* Node.js
-* Express.js
-* MongoDB
-* Mongoose
-* JWT Authentication
-* bcrypt
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JWT
+- bcrypt
 
 ## Project Structure
 
@@ -53,7 +65,7 @@ mern-task-manager/
 
 ## Installation & Setup
 
-### 1. Clone the repository
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/codewithvaish/mern-task-manager.git
@@ -93,10 +105,10 @@ npm run dev
 
 ## Future Improvements
 
-* Task reminders and notifications
-* Advanced user settings
-* Additional dashboard analytics
-* Team-based task management
+- Task reminders and notifications
+- Advanced user settings
+- Additional dashboard analytics
+- Team-based task management
 
 ## Author
 
